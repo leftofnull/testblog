@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <title>Constant Vigilance: Classes or Structs in C#</title>
+    <meta name="description" content="" />
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="https://leftofnull.github.io/testblog/favicon.ico">
+
+    <link rel="stylesheet" type="text/css" href="https://leftofnull.github.io/testblog/assets/css/screen.css?v=f6dc3c6dc2" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400" />
+
+    <link rel="canonical" href="https://leftofnull.github.io/testblog/2014/03/19/constant-vigilance-classes-or-structs-in-c/" />
+    <meta name="referrer" content="no-referrer-when-downgrade" />
+    <link rel="amphtml" href="https://leftofnull.github.io/testblog/2014/03/19/constant-vigilance-classes-or-structs-in-c/amp/" />
+    
+    <meta property="og:site_name" content="Left of Null" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Constant Vigilance: Classes or Structs in C#" />
+    <meta property="og:description" content="I&#x27;m going to have a recurring theme on the blog from time to time. I&#x27;ll probably have several, but this is the first. The theme here is constant vigilance. The same advice that Mad-Eye Moody gives to Harry Potter in the books. The constant vigilance theme will address poor coding" />
+    <meta property="og:url" content="https://leftofnull.github.io/testblog/2014/03/19/constant-vigilance-classes-or-structs-in-c/" />
+    <meta property="article:published_time" content="2014-03-19T22:52:46.000Z" />
+    <meta property="article:modified_time" content="2014-03-27T03:15:45.000Z" />
+    <meta property="article:tag" content="C#" />
+    <meta property="article:tag" content="YAGNI" />
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Constant Vigilance: Classes or Structs in C#" />
+    <meta name="twitter:description" content="I&#x27;m going to have a recurring theme on the blog from time to time. I&#x27;ll probably have several, but this is the first. The theme here is constant vigilance. The same advice that Mad-Eye Moody gives to Harry Potter in the books. The constant vigilance theme will address poor coding" />
+    <meta name="twitter:url" content="https://leftofnull.github.io/testblog/2014/03/19/constant-vigilance-classes-or-structs-in-c/" />
+    <meta name="twitter:label1" content="Written by" />
+    <meta name="twitter:data1" content="Alexander Kahoun" />
+    <meta name="twitter:label2" content="Filed under" />
+    <meta name="twitter:data2" content="C#, YAGNI" />
+    <meta name="twitter:site" content="@kahnax" />
+    <meta name="twitter:creator" content="@kahnax" />
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "Left of Null",
+        "logo": "https://leftofnull.github.io/testblog/content/images/2017/01/leftofnull_banner_1-2.svg"
+    },
+    "author": {
+        "@type": "Person",
+        "name": "Alexander Kahoun",
+        "image": {
+            "@type": "ImageObject",
+            "url": "//www.gravatar.com/avatar/0c6078b355fe79d8daf0f24dfde6fb44?s=250&d=mm&r=x",
+            "width": 250,
+            "height": 250
+        },
+        "url": "https://leftofnull.github.io/testblog/author/alexander/",
+        "sameAs": [
+            "http://leftofnull.com",
+            "https://twitter.com/kahnax"
+        ],
+        "description": "I&#x27;m a Software Engineer currently at Slalom (https://slalom.com). I&#x27;m also a Geek, Abstractionist, Recursionist, Technologist, Gamer, Husband, Dad, and Jedi Knight. I do what I love."
+    },
+    "headline": "Constant Vigilance: Classes or Structs in C#",
+    "url": "https://leftofnull.github.io/testblog/2014/03/19/constant-vigilance-classes-or-structs-in-c/",
+    "datePublished": "2014-03-19T22:52:46.000Z",
+    "dateModified": "2014-03-27T03:15:45.000Z",
+    "keywords": "C#, YAGNI",
+    "description": "I&#x27;m going to have a recurring theme on the blog from time to time. I&#x27;ll probably have several, but this is the first. The theme here is constant vigilance. The same advice that Mad-Eye Moody gives to Harry Potter in the books. The constant vigilance theme will address poor coding",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://leftofnull.github.io/testblog"
+    }
+}
+    </script>
+
+    <meta name="generator" content="Ghost 0.11" />
+    <link rel="alternate" type="application/rss+xml" title="Left of Null" href="https://leftofnull.github.io/testblog/rss/" />
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-56155652-1', 'auto');
+    ga('send', 'pageview');
+
+</script>
+</head>
+<body class="post-template tag-c tag-yagni nav-closed">
+
+    <div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+            <li class="nav-home" role="presentation"><a href="https://leftofnull.github.io/testblog/">Home</a></li>
+    </ul>
+        <a class="subscribe-button icon-feed" href="https://leftofnull.github.io/testblog/rss/">Subscribe</a>
+</div>
+<span class="nav-cover"></span>
+
+
+    <div class="site-wrapper">
+
+        
+
+
+<header class="main-header post-head no-cover">
+    <nav class="main-nav  clearfix">
+        <a class="blog-logo" href="https://leftofnull.github.io/testblog"><img src="https://leftofnull.github.io/testblog/content/images/2017/01/leftofnull_banner_1-2.svg" alt="Left of Null" /></a>
+            <a class="menu-button icon-menu" href="#"><span class="word">Menu</span></a>
+    </nav>
+</header>
+
+<main class="content" role="main">
+    <article class="post tag-c tag-yagni">
+
+        <header class="post-header">
+            <h1 class="post-title">Constant Vigilance: Classes or Structs in C#</h1>
+            <section class="post-meta">
+                <time class="post-date" datetime="2014-03-19">19 March 2014</time>  on <a href="https://leftofnull.github.io/testblog/tag/c/">C#</a>, <a href="https://leftofnull.github.io/testblog/tag/yagni/">YAGNI</a>
+            </section>
+        </header>
+
+        <section class="post-content">
+            <p>I'm going to have a recurring theme on the blog from time to time. I'll probably have several, but this is the first. The theme here is constant vigilance. The same advice that Mad-Eye Moody gives to Harry Potter in the books. The constant vigilance theme will address poor coding habits that are encouraged by the tools we use. Don't get defensive just yet, and read on. If you disagree, I welcome your comments and will do my best to keep up.</p>
+
+<h2 id="constantvigilance">Constant Vigilance</h2>
+
+<h2 id="classesorstructsinc">Classes or Structs in C#  </h2>
+
+<p>Many of the tools we use, such as ORMs, require us to map to POCOs (Plain Old CLR Objects). WCF encourages POCOs for DataContracts for DTOs and SOAP Objects. This is all fine as they suit the needs of their intended purposes. There's absolutely nothing wrong with it at all. The problem is us. The more these tools are used the more the format becomes old hat. We get used to doing things this way and never question mimicking it in our own systems, even when it's not needed. Let's look at the basic differences between the two.</p>
+
+<h3 id="classes">Classes</h3>
+
+<p>Classes are <em>generally</em> stored on the heap and are cleaned up when the garbage collector no longer detects any references and deems it safe to destroy. Classes are also <em>generally</em> passed by reference. In terms of C++, you're dealing with pointers. Albeit pointers that are managed and cleaned up for you. Keep in mind this is an overly simplistic view of classes and the same over simplicity holds true for the Structs section below. For a very in-depth analysis of stack vs heap, read <a href="http://blogs.msdn.com/b/ericlippert/archive/2009/04/27/the-stack-is-an-implementation-detail.aspx">this article</a> by Eric Lippert.</p>
+
+<p>Classes excel at a few things. They are good at/for:</p>
+
+<ul>
+<li>Encapsulating Data</li>
+<li>Hiding Data</li>
+<li>Inheritance</li>
+<li>Polymorphism</li>
+<li>Composition</li>
+<li>Abstraction</li>
+</ul>
+
+<p>Keep that in mind when we look at the next section.</p>
+
+<h3 id="structs">Structs</h3>
+
+<p>Structs are <em>generally</em> stored on the stack. This alone gives them an advantage over Classes. The stack is accessed quicker than the heap. Mind you, this is a micro-optimization and you're at the mercy of the JITer you're using. This also means that they are generally disposed of upon loss of scope, meaning you don't have to wait for garbage collection to run.</p>
+
+<p>Structs are also good at a number of things, like:</p>
+
+<ul>
+<li>Data Encapsulation</li>
+<li>Polymorphism</li>
+</ul>
+
+<h3 id="sowhichshouldyouuse">So which should you use?</h3>
+
+<p>The answer, as always, is that it depends. Take a look at the lists above. Are you trying to hide implementation details? Use a Class. Are you taking advantage of abstraction, composition, or inheritance? Use a Class. Otherwise, you could use a Struct. I would even argue when you're using abstraction, if you're not inverting control, do you really need the abstract? True, you should strive to eliminate duplicate code, but sometimes it's worth a little exploration to see if one performs better than the other. Remember, it's a fine balancing act between a writing clean code and writing software that users <strong><em>want</em></strong> to use. If you're going to go against the grain though, make sure you comment as to <em>why</em> you are doing so.</p>
+
+<h3 id="examples">Examples</h3>
+
+<p>Let's say that you need to handle some events that look like this.</p>
+
+<pre><code>public class MyClassCreatedEvent
+{
+    public int Id { get; set; }
+    public DateTime Stamp { get; set; }
+
+    public MyClassCreatedEvent(int id, DateTime stamp)
+    {
+        Id = id;
+        Stamp = stamp;
+    }
+}
+</code></pre>
+
+<p>There's nothing wrong with this, but couldn't it be as simple as:</p>
+
+<pre><code>public struct MyClassCreatedEvent
+{
+    public int Id;
+    public DateTime Stamp;
+
+    public MyClassCreatedEvent(int id, DateTime stamp)
+    {
+        Id = id;
+        Stamp = stamp;
+    }
+}
+</code></pre>
+
+<p>There really isn't much difference between the two, but there's no reason at this point to make it a Class. I say 'at this point' because you may need to change it down the road. <strong>That's okay.</strong> Software changes, it's inevitable. This is where YAGNI comes into play. If you don't need it <em>right now</em>, then don't waste effort on building it right now. This again is a balancing act, but the point is to not do more than you need to, because what you think you need may change tomorrow.</p>
+        </section>
+        <div id="disqus_thread"></div>
+        <script>
+            var disqus_shortname = 'leftofnull'; 
+            var disqus_identifier = '13'; 
+             
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <footer class="post-footer">
+            
+
+            <figure class="author-image">
+                <a class="img" href="https://leftofnull.github.io/testblog/author/alexander/" style="background-image: url(//www.gravatar.com/avatar/0c6078b355fe79d8daf0f24dfde6fb44?s&#x3D;250&amp;d&#x3D;mm&amp;r&#x3D;x)"><span class="hidden">Alexander Kahoun's Picture</span></a>
+            </figure>
+
+            <section class="author">
+                <h4><a href="https://leftofnull.github.io/testblog/author/alexander/">Alexander Kahoun</a></h4>
+
+                    <p>I&#x27;m a Software Engineer currently at Slalom (https://slalom.com). I&#x27;m also a Geek, Abstractionist, Recursionist, Technologist, Gamer, Husband, Dad, and Jedi Knight. I do what I love.</p>
+                <div class="author-meta">
+                    <span class="author-location icon-location">Gilbert, AZ, USA</span>
+                    <span class="author-link icon-link"><a href="http://leftofnull.com">http://leftofnull.com</a></span>
+                </div>
+            </section>
+
+
+            <section class="share">
+                <h4>Share this post</h4>
+                <a class="icon-twitter" href="https://twitter.com/intent/tweet?text=Constant%20Vigilance%3A%20Classes%20or%20Structs%20in%20C%23&amp;url=https://leftofnull.github.io/testblog/2014/03/19/constant-vigilance-classes-or-structs-in-c/"
+                    onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                    <span class="hidden">Twitter</span>
+                </a>
+                <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=https://leftofnull.github.io/testblog/2014/03/19/constant-vigilance-classes-or-structs-in-c/"
+                    onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                    <span class="hidden">Facebook</span>
+                </a>
+                <a class="icon-google-plus" href="https://plus.google.com/share?url=https://leftofnull.github.io/testblog/2014/03/19/constant-vigilance-classes-or-structs-in-c/"
+                   onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+                    <span class="hidden">Google+</span>
+                </a>
+            </section>
+
+
+            
+
+        </footer>
+
+    </article>
+</main>
+
+<aside class="read-next">
+    <a class="read-next-story no-cover" href="https://leftofnull.github.io/testblog/2014/04/04/why-are-you-using-source-control/">
+        <section class="post">
+            <h2>Why are you using source control?</h2>
+            <p>Top Reasons   1. Save code other than on a local drive 2. Share code among teams 3. Version Control&hellip;</p>
+        </section>
+    </a>
+    <a class="read-next-story prev no-cover" href="https://leftofnull.github.io/testblog/2014/02/24/using-github-pages-with-ghost-and-buster-on-windows-part-2/">
+        <section class="post">
+            <h2>Using GitHub Pages with Ghost and Buster on Windows (part 2)</h2>
+            <p>Hacking Buster and Deploying   Series: Part 1: Taking Inventory and Setting Up Part 2: Hacking Buster and Deploying Recap&hellip;</p>
+        </section>
+    </a>
+</aside>
+
+
+
+        <footer class="site-footer clearfix">
+            <section class="copyright"><a href="https://leftofnull.github.io/testblog">Left of Null</a> &copy; 2017</section>
+            <section class="poweredby">Proudly published with <a href="https://ghost.org">Ghost</a></section>
+        </footer>
+
+    </div>
+
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+    
+    <script type="text/javascript" src="https://leftofnull.github.io/testblog/assets/js/jquery.fitvids.js?v=f6dc3c6dc2"></script>
+    <script type="text/javascript" src="https://leftofnull.github.io/testblog/assets/js/index.js?v=f6dc3c6dc2"></script>
+
+</body>
+</html>
