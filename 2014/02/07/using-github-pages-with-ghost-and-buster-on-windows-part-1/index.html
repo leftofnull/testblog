@@ -25,7 +25,7 @@
     <meta property="og:description" content="Taking Inventory and Setting Up     First and foremost, if you are using Linux or OSX, follow this guide here and save yourself a lot of time. Series: Part 1: Taking Inventory and Setting UpPart 2: Hacking Buster and Deploying List of software I&#x27;m assuming you have a GitHub account already," />
     <meta property="og:url" content="https://leftofnull.github.io/testblog/2014/02/07/using-github-pages-with-ghost-and-buster-on-windows-part-1/" />
     <meta property="article:published_time" content="2014-02-07T22:21:43.000Z" />
-    <meta property="article:modified_time" content="2014-05-18T15:32:46.000Z" />
+    <meta property="article:modified_time" content="2017-06-20T03:25:28.000Z" />
     <meta property="article:tag" content="ghost" />
     <meta property="article:tag" content="blog" />
     <meta property="article:tag" content="gh-pages" />
@@ -73,7 +73,7 @@
     "headline": "Using GitHub Pages with Ghost and Buster on Windows (part 1)",
     "url": "https://leftofnull.github.io/testblog/2014/02/07/using-github-pages-with-ghost-and-buster-on-windows-part-1/",
     "datePublished": "2014-02-07T22:21:43.000Z",
-    "dateModified": "2014-05-18T15:32:46.000Z",
+    "dateModified": "2017-06-20T03:25:28.000Z",
     "keywords": "ghost, blog, gh-pages, windows, github pages, buster, node.js",
     "description": "Taking Inventory and Setting Up     First and foremost, if you are using Linux or OSX, follow this guide here and save yourself a lot of time. Series: Part 1: Taking Inventory and Setting UpPart 2: Hacking Buster and Deploying List of software I&#x27;m assuming you have a GitHub account already,",
     "mainEntityOfPage": {
@@ -188,13 +188,11 @@ Part 1: Taking Inventory and Setting Up<br/><a href="https://leftofnull.github.i
 
 <p>Here's where we start to get a little more difficult. Follow the prompts and leave the default settings. Feel free to change the install directory, in fact it's very important that you keep track of it. For this reason, I installed it to <code>C:\dev\MinGW</code>. This will come into play as we install Python and when we modify our <code>PATH</code>. Once you have it installed, you'll want to set up the packages that we'll be using. Let's launch the MinGW Installation Manager.</p>
 
-<p>Select the <strong>Basic Setup</strong> from the menu on the left. We just need to make sure we have two packages here, <code>mingw32-base</code> and <code>msys-base</code>. It should look like this.  </p>
+<p>Select the <strong>Basic Setup</strong> from the menu on the left. We just need to make sure we have two packages here, <code>mingw32-base</code> and <code>msys-base</code>. It should look like this. <br />
+<img src="https://hhmoww.bn1304.livefilestore.com/y4mDpImDFvFe97dQQE4Gd8kd8itSTxXFpJvpVe5i-haGucCH7z2OKu4OHqaGYhLkyOzXRgTO3VsP4ldME5Q3RVedbwBxRs_XqvXGD6rddJR3gfKXg-soRH8iIrZaWC8ci8GJK5-m4elsMHwe6QMetYtu7qieA63LYcwRR9D1oKboZ_tbr2iW_p1d9ElQ1cYtO06nNCL5d_R5T9TStCWcCmi7A?width=1112&amp;height=485&amp;cropmode=none" width="319" height="139" /></p>
 
-<iframe src="https://skydrive.live.com/embed?cid=B1874DF728CD0FC6&resid=B1874DF728CD0FC6%219530&authkey=ADt-z29oEMAMSwA" width="319" height="139" frameborder="0" scrolling="no"></iframe>
-
-<p>Now let's get one other package we'll need. Click on the <strong>All Packages</strong> and scroll down to find msys-wget and set that package to install. Lastly click the <em>Installation</em> menu at the top and then <em>Apply Changes</em>. When you're done it should look like this.  </p>
-
-<iframe src="https://skydrive.live.com/embed?cid=B1874DF728CD0FC6&resid=B1874DF728CD0FC6%219531&authkey=AC0bSwJ-I44iuX8" width="319" height="139" frameborder="0" scrolling="no"></iframe>
+<p>Now let's get one other package we'll need. Click on the <strong>All Packages</strong> and scroll down to find msys-wget and set that package to install. Lastly click the <em>Installation</em> menu at the top and then <em>Apply Changes</em>. When you're done it should look like this. <br />
+<img src="https://hxmoww.bn1304.livefilestore.com/y4mdPw4y1s7-vq_PQijvWloWjvnbPLqkJvBUBU170Cs7v3M7cNSJvPYjlpABL0-kL19X_gC2udaojpx2eSGAc63EMFhJj_TEKg5q7mN6Iymsy5sn-A0-0BIblgN-UQpzuDAuCAauNXFd5L-N5itUAjCWEhFspILiDtnCE-LPs-PfUw_U4xfcdNnN9iGEm67Sq3L9n0V3OMght3iNsqzLUGhyA?width=1112&amp;height=485&amp;cropmode=none" width="319" height="139" /></p>
 
 <p>As a final touch we're going to have to modify our <code>PATH</code> environment variable.</p>
 
@@ -202,9 +200,8 @@ Part 1: Taking Inventory and Setting Up<br/><a href="https://leftofnull.github.i
 
 <p>Use the <code>[Windows Key] + [Pause/Break Key]</code> to launch your System Properties dialog. From here you'll want to click on the <em>Advanced System settings</em>. As soon as that dialog launches, click on the <em>Environment Variables...</em> button at the bottom.</p>
 
-<iframe src="https://skydrive.live.com/embed?cid=B1874DF728CD0FC6&resid=B1874DF728CD0FC6%219532&authkey=ANjXy0aH7FysxVQ" width="288" height="319" frameborder="0" scrolling="no"></iframe>  
-
-<p>Select the <code>PATH</code> variable and click <em>Edit</em>. All the values are semi-colon delimited. We'll need to add two new ones. Move to the end of the line of values and now make sure you add to following so the end looks like this:</p>
+<p><img src="https://ibmoww.bn1304.livefilestore.com/y4ma4qsHN-zGPd3Uig56HQF9nmEyFwUyKBElbj0Zx7a7nvOycO0FUz788Vrse1FRgVLsATLBCXUVBJ1J9YHBVwpGdtjL-kkB22B4uzUUEsTb-8AIhjXrBRh4Xi4GuQ15sgQIiB2-nykR25NU9yPOaixepuiNBr_C3LWRhJNWu0AHSJ-PMKnTx3IhtqWVW4NGnSUamGNk3nHeprW1lYtwa910g?width=394&amp;height=437&amp;cropmode=none" width="288" height="319" /> <br />
+Select the <code>PATH</code> variable and click <em>Edit</em>. All the values are semi-colon delimited. We'll need to add two new ones. Move to the end of the line of values and now make sure you add to following so the end looks like this:</p>
 
 <pre><code>;C:\dev\MINGW\msys\1.0\Bin;C:\dev\MINGW\Bin;
 </code></pre>
