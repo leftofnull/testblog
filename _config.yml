@@ -7,12 +7,12 @@ description: >-
   Covering Coding, Technology, and Life.
 baseurl: "/testblog"
 url: "/testblog" # the base hostname & protocol for your site, e.g. http://example.com
-logo: "/testblog/assets/images/logo.png"
+logo: "/assets/images/logo.png"
 float_logo: true
-cover: "/testblog/assets/images/programming.jpg"
+cover: "/assets/images/programming.jpg"
 name: "Alexander Kahoun"
 author: "Alexander Kahoun"
-author_image: "/testblog/assets/images/author.jpg"
+author_image: "/assets/images/author.jpg"
 twitter_handle: "@bit_cmdr"
 github_username: bit-cmdr
 google_analytics: UA-56155652-1
