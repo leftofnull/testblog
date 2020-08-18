@@ -6,7 +6,7 @@ email: leftofnull@outlook.com
 description: >-
   Covering Coding, Technology, and Life.
 baseurl: "/testblog"
-url: "/testblog" # the base hostname & protocol for your site, e.g. http://example.com
+url: "" # the base hostname & protocol for your site, e.g. http://example.com
 logo: "/assets/images/logo.png"
 float_logo: true
 cover: "/assets/images/programming.jpg"
